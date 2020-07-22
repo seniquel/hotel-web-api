@@ -38,7 +38,8 @@ public class ReservationController {
 			throw new ChambreNotFoundException(new MessageErreurDto(CodeErreur.VALIDATION, "Il n'existe pas de client avec cet UUID"));
 		}
 		Reservation reservationCreee = service.creer(reservation.getDateDebut(), reservation.getDateFin(), reservation.getClientId(), reservation.getChambres());
-		ReservationDto reservationDto = ReservationMapper.INSTANCE.reservationToReservationDto(reservationCreee);
+		//ReservationDto reservationDto = ReservationMapper.INSTANCE.reservationToReservationDto(reservationCreee);
+		ReservationDto reservationDto = null;
 		return ResponseEntity.ok(reservationDto);
 	}
 }

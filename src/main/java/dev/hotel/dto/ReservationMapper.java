@@ -10,8 +10,8 @@ import dev.hotel.entite.Reservation;
 public interface ReservationMapper {
 
 	ReservationMapper INSTANCE = Mappers.getMapper(ReservationMapper.class);
-	@Mapping(source = "client", target = "clientId")
-    ReservationDto reservationToReservationDto(Reservation reservation);
-	@Mapping(source = "clientId", target = "clientId")
-    Reservation reservationDtoToReservation(ReservationDto reservationDto);
+	//@Mapping(source = "client", target = "clientId")
+    //ReservationDto reservationToReservationDto(Reservation reservation) {
+	//@Mapping(source = "clientId", target = "clientId")
+    //Reservation reservationDtoToReservation(ReservationDto reservationDto);
 }
