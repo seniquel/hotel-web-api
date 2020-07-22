@@ -1,75 +1,105 @@
 package dev.hotel.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreerReservationDto {
-	
+
+	/** dateDebut */
 	@NotNull
-	@NotBlank
-    private LocalDate dateDebut;
+	@JsonProperty("dateDebut")
+	private LocalDate dateDebut;
+
+	/** dateFin */
 	@NotNull
-	@NotBlank
-    private LocalDate dateFin;
+	@JsonProperty("dateFin")
+	private LocalDate dateFin;
+
+	/** clientUuid */
 	@NotNull
-	@NotBlank
-    private UUID clientId;
+	@JsonProperty("clientId")
+	private UUID clientId;
+
 	@NotNull
-	@NotBlank
-    private List<UUID> chambres;
-    
-	/** Getter
-	 * @return the dateDebut
+	@JsonProperty("chambres")
+	private List<UUID> chambres = new ArrayList<>();
+
+	/**
+	 * Getter
+	 * 
+	 * @return dateDebut
 	 */
 	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
-	/** Setter
-	 * @param dateDebut the dateDebut to set
+
+	/**
+	 * Setter
+	 * 
+	 * @param dateDebut to set
 	 */
 	public void setDateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
-	/** Getter
-	 * @return the dateFin
+
+	/**
+	 * Getter
+	 * 
+	 * @return dateFin
 	 */
 	public LocalDate getDateFin() {
 		return dateFin;
 	}
-	/** Setter
-	 * @param dateFin the dateFin to set
+
+	/**
+	 * Setter
+	 * 
+	 * @param dateFin to set
 	 */
 	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
-	/** Getter
-	 * @return the clientId
+
+	/**
+	 * Getter
+	 * 
+	 * @return clientUuid
 	 */
 	public UUID getClientId() {
 		return clientId;
 	}
-	/** Setter
-	 * @param clientId the clientId to set
+
+	/**
+	 * Setter
+	 * 
+	 * @param clientUuid to set
 	 */
-	public void setClientId(UUID clientId) {
-		this.clientId = clientId;
+	public void setClientId(UUID clientUuid) {
+		this.clientId = clientUuid;
 	}
-	/** Getter
-	 * @return the chambres
+
+	/**
+	 * Getter
+	 * 
+	 * @return chambres
 	 */
 	public List<UUID> getChambres() {
 		return chambres;
 	}
-	/** Setter
-	 * @param chambres the chambres to set
+
+	/**
+	 * Setter
+	 * 
+	 * @param chambres to set
 	 */
 	public void setChambres(List<UUID> chambres) {
 		this.chambres = chambres;
 	}
-    
+
 }

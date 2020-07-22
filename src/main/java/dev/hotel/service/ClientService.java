@@ -35,6 +35,6 @@ public class ClientService {
 	}
 	
 	public Optional<Client> getClient(UUID id){
-		return repository.findByUuid(id);
+		return repository.findById(id);
 	}
 }

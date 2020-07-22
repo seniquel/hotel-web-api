@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import dev.hotel.dto.MessageErreurDto;
+import dev.hotel.exception.ChambreException;
 import dev.hotel.exception.ChambreNotFoundException;
 import dev.hotel.exception.ClientException;
 import dev.hotel.exception.ClientNotFoundException;
@@ -29,8 +30,13 @@ public class GestionErreurCtrlAdvice {
 		return ResponseEntity.badRequest().body(ex.getMessageErreur());	
 	}
 	
-	@ExceptionHandler(ChambreNotFoundException.class)
-	public ResponseEntity<MessageErreurDto> quandChambreNotFoundException(ReservationException ex) {
+	@ExceptionHandler(ChambreException.class)
+	public ResponseEntity<MessageErreurDto> quandChambreException(ChambreException ex) {
 		return ResponseEntity.badRequest().body(ex.getMessageErreur());	
 	}
+	@ExceptionHandler(ChambreNotFoundException.class)
+	public ResponseEntity<MessageErreurDto> quandChambreNotFoundException(ChambreException ex) {
+		return ((BodyBuilder) ResponseEntity.notFound()).body(ex.getMessageErreur());	
+	}
+
 }
