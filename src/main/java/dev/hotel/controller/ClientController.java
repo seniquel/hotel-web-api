@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.hotel.dto.ClientDto;
+import dev.hotel.dto.ClientMapper;
 import dev.hotel.dto.CodeErreur;
 import dev.hotel.dto.CreerClientDto;
 import dev.hotel.dto.MessageErreurDto;
@@ -55,7 +56,7 @@ public class ClientController {
 					.body(client);
 		}
 		else {
-			throw new ClientNotFoundException(new MessageErreurDto(CodeErreur.VALIDATION, "Données Ko pour la récupération d'un client"));
+			throw new ClientNotFoundException(new MessageErreurDto(CodeErreur.VALIDATION, "Ce client n'existe pas"));
 		}
 
 	}
@@ -64,15 +65,12 @@ public class ClientController {
 	public ResponseEntity<?> postClient(@RequestBody @Valid CreerClientDto client, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			throw new ClientException(new MessageErreurDto(CodeErreur.VALIDATION, "Données Ko pour la création d'un client"));
+			throw new ClientException(new MessageErreurDto(CodeErreur.VALIDATION, "Données invalides pour la création d'un client"));
 		}
 		
 		Client clientCree = service.creer(client.getNom(), client.getPrenoms());
-		ClientDto clientDto = new ClientDto();
-		clientDto.setUuid(clientCree.getUuid());
-		clientDto.setNom(clientCree.getNom());
-		clientDto.setPrenoms(clientCree.getPrenoms());
-
+		ClientDto clientDto = ClientMapper.INSTANCE.clientToClientDto(clientCree);
 		return ResponseEntity.ok(clientDto);
 	}
+
 }
