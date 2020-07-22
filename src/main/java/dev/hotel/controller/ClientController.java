@@ -34,7 +34,6 @@ import dev.hotel.service.ClientService;
 public class ClientController {
 	
 	private ClientService service;
-	//private ClientRepository repository;
 
 	public ClientController( ClientService service) {
 		this.service = service;
@@ -68,11 +67,11 @@ public class ClientController {
 			throw new ClientException(new MessageErreurDto(CodeErreur.VALIDATION, "Données Ko pour la création d'un client"));
 		}
 		
-		Client clientCreer = service.creer(client.getNom(), client.getPrenoms());
+		Client clientCree = service.creer(client.getNom(), client.getPrenoms());
 		ClientDto clientDto = new ClientDto();
-		clientDto.setUuid(clientCreer.getUuid());
-		clientDto.setNom(clientCreer.getNom());
-		clientDto.setPrenoms(clientCreer.getPrenoms());
+		clientDto.setUuid(clientCree.getUuid());
+		clientDto.setNom(clientCree.getNom());
+		clientDto.setPrenoms(clientCree.getPrenoms());
 
 		return ResponseEntity.ok(clientDto);
 	}

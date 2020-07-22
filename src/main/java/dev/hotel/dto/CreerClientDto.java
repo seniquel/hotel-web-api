@@ -1,14 +1,19 @@
 package dev.hotel.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import dev.hotel.entite.BaseEntite;
+import com.sun.istack.NotNull;
 
 public class CreerClientDto {
 
+	@NotNull
+	@NotBlank
 	@Size(min=2)
     private String nom;
 
+	@NotNull
+	@NotBlank
 	@Size(min=2)
     private String prenoms;
 
